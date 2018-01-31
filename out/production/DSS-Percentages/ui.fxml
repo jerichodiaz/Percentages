@@ -22,7 +22,7 @@
           </Menu>
           <Menu text="Data">
             <items>
-                  <CheckMenuItem fx:id="deleteOnEnter" text="Delete name on enter" />
+                  <CheckMenuItem fx:id="deleteOnEnter" text="Clear field on enter" />
                     <MenuItem onAction="#addProduct" text="Add Product" />
                   <MenuItem onAction="#removeProduct" text="Remove Product" />
             </items>

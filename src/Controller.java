@@ -21,7 +21,7 @@ public class Controller implements Initializable{
     @FXML private ListView productList, customerList;
     @FXML private TableView productLogs, productPercentages;
     @FXML private CheckMenuItem deleteOnEnter;
-    private final String letters = "ABCDEFGHIJKLMNOPQRSTUVwXYZ";
+    private final String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private TableController controller;
 
@@ -29,8 +29,7 @@ public class Controller implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         controller = new TableController();
         initTables();
-        for(int i = 0; i < 5; i ++)
-            addProduct();
+
 
         customerList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -38,26 +37,45 @@ public class Controller implements Initializable{
                 controller.changeCustomerPercentages(newValue.toString());
             }
         });
+        for(int i = 0; i < 5; i ++)
+            addProduct();
     }
 
     @FXML private void onEnter(ActionEvent ae){
-        String name = customerName.getText();
-        name = name.isEmpty()?"Customer":name;
-        controller.addProduct(name);
-        if(deleteOnEnter.isSelected())
-            customerName.clear();
+        if(controller.PRODUCT_LIST.size()>0) {
+            String name = customerName.getText();
+            name = name.isEmpty() ? "Customer" : name;
+            controller.addProduct(name);
+            if (deleteOnEnter.isSelected())
+                customerName.clear();
+            updatePercentages();
+        }
     }
     @FXML private void addProduct(){
         char letter = letters.charAt(controller.PRODUCT_LIST.size());
         controller.PRODUCT_LIST.add(letter+"");
+        updatePercentages();
     }
     @FXML private void removeProduct(){
+        int lastIndex = controller.PRODUCT_LIST.size()-1;
+        controller.deleteProduct(controller.PRODUCT_LIST.get(lastIndex));
         if(controller.PRODUCT_LIST.size()>0){
-            controller.PRODUCT_LIST.remove(controller.PRODUCT_LIST.size()-1);
+            controller.PRODUCT_LIST.remove(lastIndex);
         }
+        updatePercentages();
     }
     @FXML private void onClose(){
         System.exit(0);
+    }
+
+    private void updatePercentages(){
+        try {
+            if (!customerList.getSelectionModel().getSelectedItem().toString().isEmpty())
+                controller.changeCustomerPercentages(customerList.getSelectionModel().getSelectedItem().toString());
+        }
+        catch (NullPointerException npe){
+            System.out.println("No selected item");
+        }
     }
 
     private void initTables(){

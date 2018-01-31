@@ -31,6 +31,7 @@ public class TableController {
 
         PRODUCT_LOGS.add(new Logs(PRODUCT_LOGS.size()+1, customerName, PRODUCT_LIST.get(index), quantity));
     }
+
     public void changeCustomerPercentages(String customerName){
         PRODUCT_PERCENTAGES.removeAll(PRODUCT_PERCENTAGES);
         double totalQuantity=0;
@@ -52,7 +53,19 @@ public class TableController {
                 }
             }
             percent = total/totalQuantity*100;
-            PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent)));
+            PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent)+"%"));
+        }
+    }
+
+    public void deleteProduct(String productName){
+        for(int i = 0; i < PRODUCT_LOGS.size(); i++){
+            if(PRODUCT_LOGS.get(i).getProductName().equals(productName)) {
+                System.out.println(i + " " + productName);
+                PRODUCT_LOGS.remove(i);
+                i--;
+            }
+            if(PRODUCT_LOGS.size()>0)
+                PRODUCT_LOGS.get(i>0?i:0).setIndex(i+1);
         }
     }
 
