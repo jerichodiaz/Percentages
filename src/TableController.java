@@ -52,7 +52,6 @@ public class TableController {
                 }
             }
             percent = total/totalQuantity*100;
-            System.out.println(total +" - "+totalQuantity);
             PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent)));
         }
     }

@@ -41,7 +41,9 @@ public class Controller implements Initializable{
     }
 
     @FXML private void onEnter(ActionEvent ae){
-        controller.addProduct(customerName.getText());
+        String name = customerName.getText();
+        name = name.isEmpty()?"Customer":name;
+        controller.addProduct(name);
         if(deleteOnEnter.isSelected())
             customerName.clear();
     }
