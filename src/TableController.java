@@ -32,41 +32,46 @@ public class TableController {
         PRODUCT_LOGS.add(new Logs(PRODUCT_LOGS.size()+1, customerName, PRODUCT_LIST.get(index), quantity));
     }
 
-    public void changeCustomerPercentages(String customerName){
+    public void changeCustomerPercentages(String customerName) {
         PRODUCT_PERCENTAGES.removeAll(PRODUCT_PERCENTAGES);
-        double totalQuantity=0;
+        double totalQuantity = 0;
         ArrayList<Logs> customerLogs = new ArrayList<>();
-        for(int i = 0; i < PRODUCT_LOGS.size(); i++){
-            if(PRODUCT_LOGS.get(i).getName().equals(customerName)) {
+        for (int i = 0; i < PRODUCT_LOGS.size(); i++) {
+            if (PRODUCT_LOGS.get(i).getName().equals(customerName)) {
                 customerLogs.add(PRODUCT_LOGS.get(i));
                 totalQuantity += PRODUCT_LOGS.get(i).getQuantity();
             }
         }
-        for(int i = 0; i<PRODUCT_LIST.size(); i++){
+        for (int i = 0; i < PRODUCT_LIST.size(); i++) {
             String productName = PRODUCT_LIST.get(i);
-            double percent=0;
-            double total= 0;
-            for(int j = 0; j < customerLogs.size(); j++){
+            double percent = 0;
+            double total = 0;
+            for (int j = 0; j < customerLogs.size(); j++) {
                 Logs customerLog = customerLogs.get(j);
-                if(customerLog.getProductName().equals(productName)){
-                    total+=customerLogs.get(j).getQuantity();
+                if (customerLog.getProductName().equals(productName)) {
+                    total += customerLogs.get(j).getQuantity();
                 }
             }
-            percent = total/totalQuantity*100;
-            PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent)+"%"));
+            percent = total / totalQuantity * 100;
+            PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent) + "%"));
         }
     }
 
     public void deleteProduct(String productName){
         for(int i = 0; i < PRODUCT_LOGS.size(); i++){
             if(PRODUCT_LOGS.get(i).getProductName().equals(productName)) {
-                System.out.println(i + " " + productName);
                 PRODUCT_LOGS.remove(i);
                 i--;
             }
             if(PRODUCT_LOGS.size()>0)
                 PRODUCT_LOGS.get(i>0?i:0).setIndex(i+1);
         }
+    }
+    public void reset(){
+        PRODUCT_LIST.clear();
+        PRODUCT_LOGS.clear();
+        PRODUCT_PERCENTAGES.clear();
+        CUSTOMER_LIST.clear();
     }
 
 }

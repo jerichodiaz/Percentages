@@ -2,17 +2,12 @@ import Models.Logs;
 import Models.Percentages;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,13 +25,13 @@ public class Controller implements Initializable{
         controller = new TableController();
         initTables();
 
-
         customerList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 controller.changeCustomerPercentages(newValue.toString());
             }
         });
+
         for(int i = 0; i < 5; i ++)
             addProduct();
     }
@@ -64,6 +59,9 @@ public class Controller implements Initializable{
         }
         updatePercentages();
     }
+    @FXML private void onReset(){
+        controller.reset();
+    }
     @FXML private void onClose(){
         System.exit(0);
     }
@@ -74,7 +72,7 @@ public class Controller implements Initializable{
                 controller.changeCustomerPercentages(customerList.getSelectionModel().getSelectedItem().toString());
         }
         catch (NullPointerException npe){
-            System.out.println("No selected item");
+            //System.out.println("No selected item");
         }
     }
 
