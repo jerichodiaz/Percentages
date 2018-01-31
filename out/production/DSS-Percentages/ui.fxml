@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -8,10 +9,12 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<BorderPane prefHeight="607.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -39,12 +42,28 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <TextField fx:id="customerName" layoutX="12.0" layoutY="14.0" onAction="#onEnter" promptText="Customer name" />
+                              <TextField fx:id="customerName" layoutX="36.0" layoutY="29.0" onAction="#onEnter" promptText="Customer name" />
+                              <Label layoutX="39.0" layoutY="6.0" prefHeight="17.0" prefWidth="143.0" text="Customer Information">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                                 <effect>
+                                    <Bloom />
+                                 </effect>
+                              </Label>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ListView fx:id="productList" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TableView fx:id="productPercentages" layoutX="-2.0" layoutY="23.0" prefHeight="466.0" prefWidth="223.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="23.0" />
+                              <Label layoutX="50.0" layoutY="6.0" prefHeight="17.0" prefWidth="121.0" text="Purchase Records">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                                 <effect>
+                                    <Bloom />
+                                 </effect>
+                              </Label>
                            </children>
                         </AnchorPane>
                     </items>
@@ -57,21 +76,46 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <TableView fx:id="productLogs" layoutX="39.0" layoutY="-8.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TableView fx:id="productLogs" layoutX="39.0" layoutY="22.0" prefHeight="264.0" prefWidth="523.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0" />
+                              <Label layoutX="190.0" layoutY="6.0" prefHeight="17.0" prefWidth="143.0" text="Information Logs">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="13.0" />
+                                 </font>
+                                 <effect>
+                                    <Bloom />
+                                 </effect>
+                              </Label>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <SplitPane dividerPositions="0.46973365617433416" layoutX="-9.0" layoutY="-38.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <SplitPane dividerPositions="0.46973365617433416, 0.5" layoutX="-9.0" layoutY="-38.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                        <children>
-                                          <ListView fx:id="customerList" layoutX="-9.0" layoutY="-20.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ListView fx:id="customerList" layoutX="-9.0" layoutY="27.0" prefHeight="257.0" prefWidth="242.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0" />
+                                          <Label layoutX="76.0" layoutY="6.0" prefHeight="17.0" prefWidth="90.0" text="Customer List">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="13.0" />
+                                             </font>
+                                             <effect>
+                                                <Bloom />
+                                             </effect>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="193.0">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="0.0" />
+                                    <AnchorPane>
                                        <children>
-                                          <TableView fx:id="productPercentages" layoutX="-12.0" layoutY="-20.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ListView fx:id="productList" layoutX="-1.0" layoutY="26.0" prefHeight="259.0" prefWidth="258.0" />
+                                          <Label layoutX="88.0" layoutY="6.0" prefHeight="17.0" prefWidth="80.0" text="Product List">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="13.0" />
+                                             </font>
+                                             <effect>
+                                                <Bloom />
+                                             </effect>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                 </items>
