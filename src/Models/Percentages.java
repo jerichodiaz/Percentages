@@ -11,6 +11,8 @@ public class Percentages {
 
     public Percentages(String productName, String percentage){
         this.productName = new SimpleStringProperty(productName);
+        if(percentage.equals("NaN%"))
+            percentage="0%";
         this.percentage = new SimpleStringProperty(percentage);
     }
 

@@ -16,6 +16,7 @@ public class Controller implements Initializable{
     @FXML private ListView productList, customerList;
     @FXML private TableView productLogs, productPercentages;
     @FXML private CheckMenuItem deleteOnEnter;
+    @FXML private Label data;
     private final String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private TableController controller;
@@ -28,6 +29,7 @@ public class Controller implements Initializable{
         customerList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                if(newValue!=null)
                 controller.changeCustomerPercentages(newValue.toString());
             }
         });
@@ -53,6 +55,7 @@ public class Controller implements Initializable{
     }
     @FXML private void onReset(){
         controller.reset();
+        data.setText("");
     }
     @FXML private void onClose(){
         System.exit(0);
@@ -62,9 +65,11 @@ public class Controller implements Initializable{
         try {
             if (!customerList.getSelectionModel().getSelectedItem().toString().isEmpty())
                 controller.changeCustomerPercentages(customerList.getSelectionModel().getSelectedItem().toString());
+            data.setText(controller.update());
         }
         catch (NullPointerException npe){
-            //System.out.println("No selected item");
+            controller.changeTotalPercentages();
+            data.setText(controller.update());
         }
     }
 

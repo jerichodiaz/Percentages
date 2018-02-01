@@ -14,6 +14,7 @@ public class TableController {
     public final ObservableList<Logs> PRODUCT_LOGS = FXCollections.observableArrayList();
     public final ObservableList<Percentages> PRODUCT_PERCENTAGES = FXCollections.observableArrayList();
     private final DecimalFormat df = new DecimalFormat("#.##");
+    private double totalQuantity = 0, selectedTotal = 0;
 
     public void addProduct(String customerName){
 
@@ -33,8 +34,8 @@ public class TableController {
     }
 
     public void changeCustomerPercentages(String customerName) {
+        totalQuantity=0;
         PRODUCT_PERCENTAGES.removeAll(PRODUCT_PERCENTAGES);
-        double totalQuantity = 0;
         ArrayList<Logs> customerLogs = new ArrayList<>();
         for (int i = 0; i < PRODUCT_LOGS.size(); i++) {
             if (PRODUCT_LOGS.get(i).getName().equals(customerName)) {
@@ -55,6 +56,36 @@ public class TableController {
             percent = total / totalQuantity * 100;
             PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent) + "%"));
         }
+    }
+    public void changeTotalPercentages(){
+        totalQuantity=0;
+        PRODUCT_PERCENTAGES.removeAll(PRODUCT_PERCENTAGES);
+        for (int i = 0; i < PRODUCT_LOGS.size(); i++) {
+            totalQuantity += PRODUCT_LOGS.get(i).getQuantity();
+        }
+        for (int i = 0; i < PRODUCT_LIST.size(); i++) {
+            String productName = PRODUCT_LIST.get(i);
+            double percent = 0;
+            double total = 0;
+            for (int j = 0; j < PRODUCT_LOGS.size(); j++) {
+                Logs customerLog = PRODUCT_LOGS.get(j);
+                if (customerLog.getProductName().equals(productName)) {
+                    total += PRODUCT_LOGS.get(j).getQuantity();
+                }
+            }
+            percent = total / totalQuantity * 100;
+            PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent) + "%"));
+        }
+    }
+    public String update(){
+        String totalProducts= PRODUCT_LIST.size()+"";
+        String totalCustomers = CUSTOMER_LIST.size()+"";
+        String totalQuantity = this.totalQuantity+"";
+        String selectedTotal = this.selectedTotal+"";
+
+        return  "  Total products: "+    totalProducts+
+                ", Total Customers: "+totalCustomers+
+                ", Total Quantity: "+ totalQuantity;
     }
     public void reset(){
         PRODUCT_LIST.clear();

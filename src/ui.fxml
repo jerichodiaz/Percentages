@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="529.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<BorderPane prefHeight="529.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <top>
       <MenuBar pickOnBounds="false" BorderPane.alignment="CENTER">
         <menus>
@@ -112,4 +112,7 @@
         </items>
       </SplitPane>
    </center>
+   <bottom>
+      <Label fx:id="data" BorderPane.alignment="CENTER_LEFT" />
+   </bottom>
 </BorderPane>
