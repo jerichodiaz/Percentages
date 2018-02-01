@@ -26,7 +26,6 @@
             <items>
                   <CheckMenuItem fx:id="deleteOnEnter" text="Clear field on enter" />
                     <MenuItem onAction="#addProduct" text="Add Product" />
-                  <MenuItem onAction="#removeProduct" text="Remove Product" />
                 <MenuItem onAction="#onReset" text="Reset Data" />
             </items>
           </Menu>

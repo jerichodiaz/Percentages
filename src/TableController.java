@@ -56,17 +56,6 @@ public class TableController {
             PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent) + "%"));
         }
     }
-
-    public void deleteProduct(String productName){
-        for(int i = 0; i < PRODUCT_LOGS.size(); i++){
-            if(PRODUCT_LOGS.get(i).getProductName().equals(productName)) {
-                PRODUCT_LOGS.remove(i);
-                i--;
-            }
-            if(PRODUCT_LOGS.size()>0)
-                PRODUCT_LOGS.get(i>0?i:0).setIndex(i+1);
-        }
-    }
     public void reset(){
         PRODUCT_LIST.clear();
         PRODUCT_LOGS.clear();

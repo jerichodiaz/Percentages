@@ -51,14 +51,6 @@ public class Controller implements Initializable{
         controller.PRODUCT_LIST.add(letter+"");
         updatePercentages();
     }
-    @FXML private void removeProduct(){
-        int lastIndex = controller.PRODUCT_LIST.size()-1;
-        controller.deleteProduct(controller.PRODUCT_LIST.get(lastIndex));
-        if(controller.PRODUCT_LIST.size()>0){
-            controller.PRODUCT_LIST.remove(lastIndex);
-        }
-        updatePercentages();
-    }
     @FXML private void onReset(){
         controller.reset();
     }
