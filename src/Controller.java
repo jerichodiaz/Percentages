@@ -58,6 +58,8 @@ public class Controller implements Initializable{
     @FXML private void onReset(){
         controller.reset();
         data.setText("");
+        for(int i = 0; i < 5; i++)
+            addProduct();
     }
     @FXML private void onClose(){
         System.exit(0);
