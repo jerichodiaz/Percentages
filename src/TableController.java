@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 public class TableController {
@@ -78,6 +80,7 @@ public class TableController {
             percent = total / totalQuantity * 100;
             PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent) + "%"));
         }
+        sortPercentages();
     }
     public String update(){
         String totalProducts= PRODUCT_LIST.size()+"";
@@ -94,5 +97,7 @@ public class TableController {
         PRODUCT_PERCENTAGES.clear();
         CUSTOMER_LIST.clear();
     }
-
+    private void sortPercentages(){
+        Collections.sort(PRODUCT_PERCENTAGES, Comparator.comparingDouble(Percentages::getDpercentage).reversed());
+    }
 }
