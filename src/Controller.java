@@ -84,18 +84,24 @@ public class Controller implements Initializable{
         //productLogs
         TableColumn<Logs, String> logsIndex = new TableColumn<>("#");
         logsIndex.setCellValueFactory(new PropertyValueFactory<Logs, String>("index"));
+        logsIndex.setPrefWidth(50);
         TableColumn<Logs, String> logsCustomerName = new TableColumn<>("Customer Name");
         logsCustomerName.setCellValueFactory(new PropertyValueFactory<Logs, String>("name"));
+        logsCustomerName.setPrefWidth(261);
         TableColumn<Logs, String> logsProductName = new TableColumn<>("Product Name");
         logsProductName.setCellValueFactory(new PropertyValueFactory<Logs, String>("productName"));
+        logsProductName.setPrefWidth(113);
         TableColumn<Logs, String> logsQuantity = new TableColumn<>("Quantity");
         logsQuantity.setCellValueFactory(new PropertyValueFactory<Logs, String>("quantity"));
+        logsQuantity.setPrefWidth(69);
 
         //productPercentages
         TableColumn<Percentages, String> percName = new TableColumn<>("Product Name");
         percName.setCellValueFactory(new PropertyValueFactory<Percentages, String>("productName"));
+        percName.setPrefWidth(105);
         TableColumn<Percentages, String> percPercentage = new TableColumn<>("%");
         percPercentage.setCellValueFactory(new PropertyValueFactory<Percentages, String>("percentage"));
+        percPercentage.setPrefWidth(105);
 
         //binding
         productLogs.getColumns().addAll(logsIndex, logsCustomerName, logsProductName, logsQuantity);
