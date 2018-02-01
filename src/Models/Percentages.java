@@ -15,7 +15,6 @@ public class Percentages {
         if(percentage.equals("NaN%"))
             percentage="0%";
         this.percentage = new SimpleStringProperty(percentage);
-        System.out.println(percentage);
         this.dpercentage = Double.parseDouble(percentage.substring(0, percentage.length()-1));
     }
 

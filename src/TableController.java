@@ -60,6 +60,7 @@ public class TableController {
             percent = total / localtotalQuantity * 100;
             PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent) + "%"));
         }
+        sortPercentages();
     }
     public void changeTotalPercentages(){
         totalQuantity=0;
