@@ -49,9 +49,11 @@ public class Controller implements Initializable{
         }
     }
     @FXML private void addProduct(){
-        char letter = letters.charAt(controller.PRODUCT_LIST.size());
-        controller.PRODUCT_LIST.add(letter+"");
-        updatePercentages();
+        if(controller.PRODUCT_LIST.size()!=26) {
+            String letter = letters.charAt(controller.PRODUCT_LIST.size()) + "";
+            controller.PRODUCT_LIST.add(letter + "");
+            updatePercentages();
+        }
     }
     @FXML private void onReset(){
         controller.reset();

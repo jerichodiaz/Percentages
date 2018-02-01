@@ -34,14 +34,16 @@ public class TableController {
     }
 
     public void changeCustomerPercentages(String customerName) {
+        double localtotalQuantity=0;
         totalQuantity=0;
         PRODUCT_PERCENTAGES.removeAll(PRODUCT_PERCENTAGES);
         ArrayList<Logs> customerLogs = new ArrayList<>();
         for (int i = 0; i < PRODUCT_LOGS.size(); i++) {
             if (PRODUCT_LOGS.get(i).getName().equals(customerName)) {
                 customerLogs.add(PRODUCT_LOGS.get(i));
-                totalQuantity += PRODUCT_LOGS.get(i).getQuantity();
+                localtotalQuantity += PRODUCT_LOGS.get(i).getQuantity();
             }
+            totalQuantity += PRODUCT_LOGS.get(i).getQuantity();
         }
         for (int i = 0; i < PRODUCT_LIST.size(); i++) {
             String productName = PRODUCT_LIST.get(i);
@@ -53,7 +55,7 @@ public class TableController {
                     total += customerLogs.get(j).getQuantity();
                 }
             }
-            percent = total / totalQuantity * 100;
+            percent = total / localtotalQuantity * 100;
             PRODUCT_PERCENTAGES.add(new Percentages(productName, df.format(percent) + "%"));
         }
     }
@@ -81,7 +83,6 @@ public class TableController {
         String totalProducts= PRODUCT_LIST.size()+"";
         String totalCustomers = CUSTOMER_LIST.size()+"";
         String totalQuantity = this.totalQuantity+"";
-        String selectedTotal = this.selectedTotal+"";
 
         return  "  Total products: "+    totalProducts+
                 ", Total Customers: "+totalCustomers+
